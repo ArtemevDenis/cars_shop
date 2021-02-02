@@ -21,22 +21,21 @@ const upload = multer({storage: storage})
 
 router.get('/', authMiddleware, function (req, res) {
         const id = req.user.userID
-        console.log(id)
         const selectUserData = 'select users.avatarID, users.email, users.phone, users.surname, users.name, avatars.img from users left join avatars on users.avatarID = avatars.ID where users.ID = ?'
 
 
         global.connectionMYSQL.execute(selectUserData, [id])
             .then(r => {
-                console.log(r[0][0])
                 res.json(r[0][0])
-            }).catch(console.log)
+            }).catch(e => {
+            res.json({error: e})
+        })
     }
 )
 
 router.post('/', [authMiddleware, upload.single('avatar')], function (req, res) {
-        // console.log(req)
-        const id = req.user.userID;
-        console.log('req.body.data: ', req.body.data)
+
+    const id = req.user.userID;
         const {email, phone, name, surname} = JSON.parse(req.body.data);
         const {filename} = req.file;
 
@@ -46,7 +45,6 @@ router.post('/', [authMiddleware, upload.single('avatar')], function (req, res) 
         global.connectionMYSQL.execute(sqlCreateAvatars, [filename])
             .then(r => {
                 const avatarID = r[0].insertId
-                console.log(avatarID, name, surname, phone, email)
                 return global.connectionMYSQL.execute(updateUsers, [name, surname, phone, email, avatarID, id])
             })
             .then(r => {
@@ -62,7 +60,6 @@ router.post('/', [authMiddleware, upload.single('avatar')], function (req, res) 
 router.post('/fields', [authMiddleware], function (req, res) {
 
         const id = req.user.userID;
-        console.log('req.body.data: ', req.body)
         const {email, phone, name, surname} = req.body;
 
         const updateUsers = 'update users set name = ?, surname = ?, phone = ?, email = ? where ID = ?'

@@ -13,7 +13,7 @@ const Car = () => {
     const history = useHistory()
 
     const sanitizer = dompurify.sanitize;
-    const [showAll, setShowAll] = useState(true)
+    const [showAll, setShowAll] = useState(false)
 
     const [car, setCar] = useState(null)
     const [images, setImages] = useState(null)
@@ -21,7 +21,7 @@ const Car = () => {
 
     const [height, setHeight] = useState(0)
 
-    const [showModal, setShowModal] = useState(true)
+    const [showModal, setShowModal] = useState(false)
 
     const [form, setForm] = useState({
         address: '', date: ''
@@ -77,7 +77,6 @@ const Car = () => {
                 {car && <>
                     <h2>Описание владельца</h2>
                     <div
-                        id='description'
                         style={textStyle}
                         className={'product-view__description-text'}
                         dangerouslySetInnerHTML={{__html: sanitizer(car.description)}}/>

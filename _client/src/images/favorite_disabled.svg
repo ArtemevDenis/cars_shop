@@ -1,4 +1,6 @@
-<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<ellipse cx="15.7845" cy="15" rx="15.1293" ry="15" fill="#C4C4C4"/>
-<path id='star' d="M15.7844 5L18.0489 11.9098H25.377L19.4485 16.1803L21.713 23.0902L15.7844 18.8197L9.85593 23.0902L12.1204 16.1803L6.1919 11.9098H13.52L15.7844 5Z" fill="white"/>
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="15.7845" cy="15" rx="15.1293" ry="15" fill="#C4C4C4"/>
+    <path id='star'
+          d="M15.7844 5L18.0489 11.9098H25.377L19.4485 16.1803L21.713 23.0902L15.7844 18.8197L9.85593 23.0902L12.1204 16.1803L6.1919 11.9098H13.52L15.7844 5Z"
+          fill="white"/>
 </svg>

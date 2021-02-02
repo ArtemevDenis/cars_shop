@@ -1,8 +1,5 @@
 const {Router} = require('express')
-const jwt = require('jsonwebtoken')
-const config = require('config')
-//
-// const adminMiddleware = require('../middleware/adminAuth.middleware')
+
 const router = Router()
 
 router.get('', function (req, res) {
@@ -12,7 +9,9 @@ router.get('', function (req, res) {
         global.connectionMYSQL.execute(selectLimits)
             .then(r =>
                 res.json(r[0][0])
-            ).catch(console.log)
+            ).catch(e => {
+            res.json({error: e})
+        })
     }
 )
 

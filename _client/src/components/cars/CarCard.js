@@ -1,5 +1,6 @@
 import React from 'react';
 import {useHistory} from "react-router-dom";
+import Favorite from "./Favorite";
 
 const CarCard = ({car}) => {
     let history = useHistory();
@@ -18,7 +19,7 @@ const CarCard = ({car}) => {
                     <p className="car__title">{car.brand}</p>
                     <p className="car__text">{car.title}</p>
                 </div>
-                <div className="car__favorite"/>
+                <Favorite id={car.ID}/>
             </div>
         </div>
     )

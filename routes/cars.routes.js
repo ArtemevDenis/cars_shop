@@ -1,8 +1,5 @@
 const {Router} = require('express')
-const jwt = require('jsonwebtoken')
-const config = require('config')
-//
-// const adminMiddleware = require('../middleware/adminAuth.middleware')
+
 const router = Router()
 
 
@@ -32,9 +29,9 @@ router.get('/full', async function (req, res) {
             .then(() =>
                 res.json(output)
             )
-            .catch(err =>
-                res.json(err)
-            )
+            .catch(e => {
+                res.json({error: e})
+            })
     }
 )
 
@@ -60,7 +57,9 @@ router.get('', function (req, res) {
         global.connectionMYSQL.execute(selectCars, params)
             .then(results => {
                 res.json(results[0]);
-            }).catch(console.log);
+            }).catch(e => {
+            res.json({error: e})
+        });
     }
 )
 

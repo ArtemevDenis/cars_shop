@@ -12,7 +12,9 @@ router.get('', authMiddleware, function (req, res) {
         global.connectionMYSQL.execute(selectBrands)
             .then(r => {
                 res.json(r[0])
-            }).catch(console.log)
+            }).catch(e => {
+            res.json({error: e})
+        })
     }
 )
 

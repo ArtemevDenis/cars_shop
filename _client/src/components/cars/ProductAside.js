@@ -1,10 +1,11 @@
 import React from 'react'
+import Favorite from "./Favorite";
 
 const ProductAside = ({car, setActive}) => {
     return (
         <>
             <h2 className='aside__important aside__important--center'>{car.title}  </h2>
-            <span className="car__favorite"/>
+            <Favorite id={car.ID}/>
             <h2 className='aside__important aside__important--center'>{car.price}₽</h2>
 
             <button className='button--primary aside__important--center' onClick={() => {

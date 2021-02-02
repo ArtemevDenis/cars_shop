@@ -41,10 +41,8 @@ router.post(
                 res.json({token, userID: user.ID, role: user.role, email: user.email})
             })
             .catch(e => {
-                    console.log(e)
-                    res.status(500).json({error: 'Упс, что то пошло не так...'})
-                }
-            )
+                res.json({error: e})
+            })
     }
 )
 
