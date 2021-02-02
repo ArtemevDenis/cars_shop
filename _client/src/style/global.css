@@ -1,0 +1,12 @@
+.font--08rem {
+    font-size: 0.8rem;
+}
+
+.font--bold {
+    font-weight: 600;
+}
+
+.link--clear {
+    text-decoration: none;
+    color: black;
+}

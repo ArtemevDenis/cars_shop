@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@import "style/header.css";
+@import "style/footer.css";
+@import "style/global.css";
+@import "style/column.css";
+@import "style/checkbox.css";
+@import "style/slider.css";
+@import "style/carCard.css";
+@import "style/main.css";
+@import "style/reviews.css";
+@import "style/productView.css";
+@import "style/buttons.css";
+@import "style/catalog.css";
+@import "style/rangeSlider.css";
+@import "style/checkboxList.css";
+@import "style/widget.css";
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    min-height: 100vh;
+    position: relative;
+
+}
+
+.main-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+}
+
+.main-container > *:not(:first-child) {
+    margin-top: 20px;
+}
+
+.main-container:last-child {
+    padding-bottom: 220px;
+}
+
+.content {
+    width: 1170px;
+    margin: 0 auto;
+    position: relative;
+    flex: 1 0 auto;
+}
+
+.inner {
+    position: relative;
+    width: 1170px;
+    margin: auto;
+}
+
+.link-back {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: black;
+}
+
+
+.link-back:hover {
+    color: #0b76ef;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

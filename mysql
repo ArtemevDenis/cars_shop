@@ -1,0 +1,108 @@
+use cars;
+create table slider
+(
+    ID   MEDIUMINT    NOT NULL AUTO_INCREMENT,
+    img  VARCHAR(100) NOT NULL,
+    link VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID)
+);
+insert into slider (img, link)
+values ('car-49278_960_720.webp', '/'),
+       ('car-63930_960_720.webp', '/'),
+       ('car-1300629_960_720.webp', '/'),
+       ('car-race-438467_960_720.webp', '/');
+
+create table cars
+(
+    ID          MEDIUMINT      NOT NULL AUTO_INCREMENT,
+    price       INT UNSIGNED   NOT NULL,
+    year        INT UNSIGNED   NOT NULL,
+    brandID     MEDIUMINT      NOT NULL,
+    mileage     INT UNSIGNED   NOT NULL,
+    title       VARCHAR(1000)  NOT NULL,
+    date        DATE           NOT NULL,
+    description VARCHAR(10000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+create table brands
+(
+    ID   MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    name VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+insert into brands (name)
+values ('BMW'),
+       ('Mercedes'),
+       ('Лада'),
+       ('Audi');
+
+
+insert into cars (price, year, brandID, mileage, title, date, description)
+values ('100000', '2010', '3', '200000', 'Лада гранта', '2021-01-28',
+        '<p>Топовая комплектация</p><p>Отличное качество сборки</p>'),
+       ('5000000', '2019', '2', '15000', 'e200', '2021-01-28',
+        '<p>Топовая комплектация</p><p>Отличное качество сборки</p>'),
+       ('1000000', '2019', '1', '2000', 'm3', '2021-01-28',
+        '<p>Топовая комплектация</p><p>Отличное качество сборки</p>'),
+       ('3000000', '2019', '4', '21000', 'TT', '2021-01-28',
+        '<p>Топовая комплектация</p><p>Отличное качество сборки</p> <javascript:alert(''Hacked!'');>');
+
+create table carsImages
+(
+    ID    MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    img   VARCHAR(1000) NOT NULL,
+    carID MEDIUMINT     NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+insert into carsImages (img, carID)
+values ('car-49278_960_720.webp', '1'),
+       ('car-63930_960_720.webp', '2'),
+       ('car-1300629_960_720.webp', '3'),
+       ('car-race-438467_960_720.webp', '4');
+
+
+
+CREATE TABLE avatars
+(
+    ID  MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    img VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO avatars (img)
+VALUES ('lion-1118467_960_720.webp'),
+       ('woman-1127201_960_720.webp');
+
+CREATE TABLE users
+(
+    ID       MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    name     VARCHAR(1000) NOT NULL,
+    surname  VARCHAR(1000) NOT NULL,
+    phone    VARCHAR(1000) NOT NULL,
+    email    VARCHAR(1000) NOT NULL,
+    password VARCHAR(1000) NOT NULL,
+    avatarID VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO users (name, surname, phone, email, password, avatarID)
+VALUES ('Жанна', 'Муравьева', '89999999999', 'janna@email.email', 'janna', 2),
+       ('Илья', 'Гашиков', '89993738243', 'ilia@email.email', 'ilia', 1);
+
+CREATE TABLE reviews
+(
+    ID     MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    carID  MEDIUMINT     NOT NULL,
+    userID MEDIUMINT     NOT NULL,
+    text   VARCHAR(1000) NOT NULL,
+    date   DATE          NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+
+INSERT INTO reviews (carID, userID, text, date)
+VALUES (1, 1, 'Какаая то информация о машине', '2021-01-28'),
+       (2, 1, 'ТОПОВЫЕ САНИ РЕКОМЕНДУЮ', '2021-01-28');

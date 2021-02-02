@@ -1,0 +1,68 @@
+.product-view {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    grid-column-gap: 85px;
+    grid-template-areas: 'slider aside'
+                         'description aside'
+                         'reviews reviews';
+}
+
+.product-view__aside {
+    grid-area: aside;
+}
+
+.product-view__slider {
+    grid-area: slider;
+}
+
+.product-view__description {
+    grid-area: description;
+}
+
+.product-view__reviews {
+    grid-area: reviews;
+}
+
+
+.aside {
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside__important {
+    font-size: 36px;
+    line-height: 49px;
+    font-weight: bold;
+}
+
+.aside__important--center {
+    text-align: center;
+}
+
+.aside__text {
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.product-view__description-text {
+    max-height: 13rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    transition: all 2s ease-in-out;
+}
+
+.product-view__description-show {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-view__description-show:hover {
+    color: #0b76ef;
+}

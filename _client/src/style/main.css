@@ -1,0 +1,56 @@
+.cars-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 56px;
+    grid-row-gap: 30px;
+}
+
+
+.advantage {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.advantage + .advantage {
+    margin-top: 30px;
+}
+
+.advantage--front {
+    flex-direction: row;
+}
+
+.advantage--back {
+    flex-direction: row-reverse;
+}
+
+.advantage__img-wrap {
+    display: block;
+    width: 50%;
+}
+
+.advantage__img {
+    object-fit: cover;
+    width: 100%;
+    filter: grayscale(100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.advantage__text {
+    width: 50%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    align-items: center;
+    align-content: center;
+}
+
+.advantage__title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+}
+
+.advantage:hover .advantage__img {
+    filter: grayscale(0%);
+}

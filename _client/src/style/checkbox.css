@@ -1,0 +1,63 @@
+.widget--checkbox-real {
+    position: absolute;
+    display: block;
+    z-index: -1;
+    opacity: 0;
+}
+
+.widget--checkbox-real + .widget--checkbox-fake {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+.widget--checkbox-real + .widget--checkbox-fake::before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    background: #fff;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.widget--checkbox-real:checked + .widget--checkbox-fake::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+/* стили при наведении курсора на checkbox */
+.widget--checkbox-real:not(:disabled):not(:checked) + .widget--checkbox-fake:hover::before {
+    border-color: #b3d7ff;
+}
+
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.widget--checkbox-real:not(:disabled):active + .widget--checkbox-fake::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+
+/* стили для чекбокса, находящегося в фокусе */
+.widget--checkbox-real:focus + .widget--checkbox-fake::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.widget--checkbox-real:focus:not(:checked) + .widget--checkbox-fake::before {
+    border-color: #80bdff;
+}
+
+/* стили для чекбокса, находящегося в состоянии disabled */
+.widget--checkbox-real:disabled + .widget--checkbox-fake::before {
+    background-color: #e9ecef;
+}

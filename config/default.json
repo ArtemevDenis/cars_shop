@@ -1,0 +1,9 @@
+{
+  "port": 5000,
+  "jwtSecret": "dh7ds>Rge%?3",
+  "baseUrl": "http://localhost:5000",
+  "host": "localhost",
+  "user": "wintermax",
+  "database": "cars",
+  "password": "wintermax"
+}

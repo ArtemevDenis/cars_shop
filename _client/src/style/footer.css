@@ -1,0 +1,21 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #adb5bd;
+    flex: 0 0 auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer .wrapper {
+    width: 1170px;
+    margin: 0 auto;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.footer:hover {
+    background: #ff8a8a;
+}
