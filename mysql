@@ -17,7 +17,7 @@ create table cars
     ID          MEDIUMINT      NOT NULL AUTO_INCREMENT,
     price       INT UNSIGNED   NOT NULL,
     year        INT UNSIGNED   NOT NULL,
-    brandID     MEDIUMINT      NOT NULL,
+    brandID     MEDIUMINT      NOT NULL REFERENCES brands (ID),
     mileage     INT UNSIGNED   NOT NULL,
     title       VARCHAR(1000)  NOT NULL,
     date        DATE           NOT NULL,
@@ -53,7 +53,7 @@ create table carsImages
 (
     ID    MEDIUMINT     NOT NULL AUTO_INCREMENT,
     img   VARCHAR(1000) NOT NULL,
-    carID MEDIUMINT     NOT NULL,
+    carID MEDIUMINT     NOT NULL REFERENCES cars (ID),
     PRIMARY KEY (ID)
 );
 
@@ -78,13 +78,14 @@ VALUES ('lion-1118467_960_720.webp'),
 
 CREATE TABLE users
 (
-    ID       MEDIUMINT     NOT NULL AUTO_INCREMENT,
-    name     VARCHAR(1000) NOT NULL,
-    surname  VARCHAR(1000) NOT NULL,
-    phone    VARCHAR(1000) NOT NULL,
-    email    VARCHAR(1000) NOT NULL,
-    password VARCHAR(1000) NOT NULL,
-    avatarID VARCHAR(1000) NOT NULL,
+    ID       MEDIUMINT             NOT NULL AUTO_INCREMENT,
+    name     VARCHAR(1000)         NOT NULL,
+    surname  VARCHAR(1000)         NOT NULL,
+    phone    VARCHAR(1000)         NOT NULL,
+    email    VARCHAR(100)         NOT NULL UNIQUE,
+    password VARCHAR(1000)         NOT NULL,
+    avatarID VARCHAR(1000)         NOT NULL REFERENCES avatars (ID),
+    role     ENUM ('user','admin') NOT NULL default 'user',
     PRIMARY KEY (ID)
 );
 
@@ -95,8 +96,8 @@ VALUES ('Жанна', 'Муравьева', '89999999999', 'janna@email.email', 
 CREATE TABLE reviews
 (
     ID     MEDIUMINT     NOT NULL AUTO_INCREMENT,
-    carID  MEDIUMINT     NOT NULL,
-    userID MEDIUMINT     NOT NULL,
+    carID  MEDIUMINT     NOT NULL REFERENCES cars (ID),
+    userID MEDIUMINT     NOT NULL REFERENCES users (ID),
     text   VARCHAR(1000) NOT NULL,
     date   DATE          NOT NULL,
     PRIMARY KEY (ID)
@@ -106,3 +107,14 @@ CREATE TABLE reviews
 INSERT INTO reviews (carID, userID, text, date)
 VALUES (1, 1, 'Какаая то информация о машине', '2021-01-28'),
        (2, 1, 'ТОПОВЫЕ САНИ РЕКОМЕНДУЮ', '2021-01-28');
+
+
+create table testDrives
+(
+    ID      MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    carID   MEDIUMINT     NOT NULL REFERENCES cars (ID),
+    userID  MEDIUMINT     NOT NULL REFERENCES users (ID),
+    data    DATE          NOT NULL,
+    address VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+)

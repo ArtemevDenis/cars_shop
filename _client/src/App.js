@@ -6,7 +6,7 @@ import {UserContext} from "./context/AuthContext";
 import Root from "./components/Root";
 
 function App() {
-    const {token, login, logout, userID, role, email} = useAuth()
+    const {token, login, logout, userID, role, email, loadData, load} = useAuth()
     const isAdmin = !!(role && role.indexOf('admin') === 0);
     const isAuth = !!token;
 
@@ -15,13 +15,16 @@ function App() {
         console.log('set token')
     }, [token])
 
+    useEffect(() => {
+        loadData()
+    }, [])
 
     return (
 
         <UserContext.Provider value={{token, login, logout, userID, isAuth, isAdmin, email}}>
-            <Router>
+            {load && <Router>
                 <Root/>
-            </Router>
+            </Router>}
         </UserContext.Provider>
     );
 }

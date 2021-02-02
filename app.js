@@ -19,6 +19,8 @@ app.use('/api/v1/cars', require('./routes/cars.routes'))
 app.use('/api/v1/reviews', require('./routes/reviews.routes'))
 app.use('/api/v1/brands', require('./routes/brands.routes'))
 app.use('/api/v1/limits', require('./routes/limits.routes'))
+app.use('/api/v1/auth', require('./routes/auth.routes'))
+app.use('/api/v1/user', require('./routes/user.router'))
 
 
 const PORT = config.get('port') || 5000;

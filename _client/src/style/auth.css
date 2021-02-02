@@ -1,0 +1,47 @@
+.inner {
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+.content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #adb5bd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 30px;
+    width: 780px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.auth__input_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth__title {
+    padding: 0;
+    margin: 0;
+}
+.auth__line{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+    margin-bottom: 30px;
+}
+
+
+.registration{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    margin-bottom: 30px;
+}

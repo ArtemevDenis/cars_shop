@@ -66,3 +66,16 @@
 .product-view__description-show:hover {
     color: #0b76ef;
 }
+
+.sign-up-test-drive {
+    width: 500px;
+}
+
+.sign-up-test-drive__input_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-up-test-drive__input_block + .sign-up-test-drive__input_block {
+    margin-top: 30px;
+}

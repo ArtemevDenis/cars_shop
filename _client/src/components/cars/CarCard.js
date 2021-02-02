@@ -5,7 +5,7 @@ const CarCard = ({car}) => {
     let history = useHistory();
 
     const routeTo = () => {
-        history.push(`/cars/${car.ID}`);
+        history.push(`/catalog/${car.ID}`);
     }
 
     return (

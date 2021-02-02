@@ -5,6 +5,12 @@ import NotFound from "../pages/404";
 import Main from "../pages/user/Main";
 import Car from "../pages/user/Car";
 import Catalog from "../pages/user/Catalog";
+import About from "../pages/user/About";
+import Profile from "../pages/user/Profile";
+import Login from "../pages/Login";
+import Registration from "../pages/Registaration";
+import TestDrives from "../pages/user/TestDrives";
+import Favorite from "../pages/user/Favorite";
 
 const AdminRoute = ({children, ...rest}) => {
     const {isAdmin} = useContext(UserContext)
@@ -20,7 +26,9 @@ const AdminRoute = ({children, ...rest}) => {
 }
 
 const ProtectRoute = ({children, ...rest}) => {
+    console.log(1212)
     const {isAuth} = useContext(UserContext)
+    console.log(isAuth)
     return <Route {...rest}
                   render={
                       () => {
@@ -51,31 +59,49 @@ export const useRoutes = () => {
     </>
 
     let defaultRouters = <>
-        <Route path={"/404"}>
-            <NotFound/>
-        </Route>
-        <Route path={"/cars/:id"}>
-            <Car/>
-        </Route>
-        <Route path={"/home"} exact>
-            <Main/>
-        </Route>
-        <Route path={"/catalog"} exact>
-            <Catalog/>
-        </Route>
-        <AdminRoute path={"/admin/slider"}>
-            {/*<SliderEdit/>*/}
-        </AdminRoute>
-        <ProtectRoute path={"/profile"}>
-            {/*<Profile/>*/}
-        </ProtectRoute>
 
-        <Redirect to={"/404"}/>
+
+        {/*<Redirect to={"/home"}/>*/}
     </>
 
     return (
         <Switch>
-            {defaultRouters}
+            <Route path={"/404"}>
+                <NotFound/>
+            </Route>
+            <Route path={"/catalog/:id"}>
+                <Car/>
+            </Route>
+            <Route path={"/home"}>
+                <Main/>
+            </Route>
+            <Route path={"/"} exact>
+                <Main/>
+            </Route>
+            <Route path={"/catalog"}>
+                <Catalog/>
+            </Route>
+            <Route path={"/about"}>
+                <About/>
+            </Route>
+            <Route path={"/login"}>
+                <Login/>
+            </Route>
+            <Route path={"/registration"}>
+                <Registration/>
+            </Route>
+            <AdminRoute path={"/admin/slider"}>
+                {/*<SliderEdit/>*/}
+            </AdminRoute>
+            <ProtectRoute path={"/profile"} exact>
+                <Profile/>
+            </ProtectRoute>
+            <ProtectRoute path={"/profile/test-drives"}>
+                <TestDrives/>
+            </ProtectRoute>
+            <ProtectRoute path={"/profile/favorite"}>
+                <Favorite/>
+            </ProtectRoute>
             <Redirect to={"/404"}/>
         </Switch>
 

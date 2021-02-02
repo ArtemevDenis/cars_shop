@@ -20,5 +20,8 @@
     padding: 0 20px 50px;
     box-sizing: border-box;
     background: #adb5bd;
+}
 
+.catalog__aside-filter:hover .button--primary{
+    background: #FF7C7C;
 }

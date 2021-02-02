@@ -5,6 +5,7 @@ import Slider from "../../components/Slider";
 import Reviews from "../../components/reviews";
 import ProductAside from "../../components/cars/ProductAside";
 import dompurify from "dompurify";
+import Modal from "../../components/Modal";
 
 
 const Car = () => {
@@ -12,13 +13,24 @@ const Car = () => {
     const history = useHistory()
 
     const sanitizer = dompurify.sanitize;
-    const [showAll, setShowAll] = useState(false)
+    const [showAll, setShowAll] = useState(true)
 
     const [car, setCar] = useState(null)
     const [images, setImages] = useState(null)
     const [reviews, setReviews] = useState(null)
 
     const [height, setHeight] = useState(0)
+
+    const [showModal, setShowModal] = useState(true)
+
+    const [form, setForm] = useState({
+        address: '', date: ''
+    })
+
+    const changeHandler = event => {
+        setForm({...form, [event.target.name]: event.target.value})
+    }
+
 
     const {request} = useHttp()
     const loadCar = () => {
@@ -51,7 +63,7 @@ const Car = () => {
     }, [car])
     return (
         <div className='content product-view'>
-            <aside className='product-view__aside'>{car && <ProductAside car={car}/>}</aside>
+            <aside className='product-view__aside'>{car && <ProductAside car={car} setActive={setShowModal}/>}</aside>
             <div className='product-view__slider'>
                 <div
                     className='link-back'
@@ -65,6 +77,7 @@ const Car = () => {
                 {car && <>
                     <h2>Описание владельца</h2>
                     <div
+                        id='description'
                         style={textStyle}
                         className={'product-view__description-text'}
                         dangerouslySetInnerHTML={{__html: sanitizer(car.description)}}/>
@@ -78,6 +91,36 @@ const Car = () => {
             <div className='product-view__reviews'>
                 {reviews && <Reviews reviews={reviews}/>}
             </div>
+            <Modal active={showModal} setActive={setShowModal}>
+                <h2>Запись на тестдрайв</h2>
+                <div className='sign-up-test-drive'>
+                    <div className='sign-up-test-drive__input_block'>
+                        <lable className='widget--title'>Адрес:</lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='address'
+                            name='address'
+                            type='text'
+                            value={form.address}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='sign-up-test-drive__input_block'>
+                        <lable className='widget--title'>Дата:</lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='date'
+                            name='date'
+                            type='date'
+                            value={form.date}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='sign-up-test-drive__input_block'>
+                        <button className='button--primary'>Записаться</button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     )
 }

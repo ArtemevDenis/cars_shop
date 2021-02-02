@@ -1,6 +1,5 @@
 const {Router} = require('express')
-const jwt = require('jsonwebtoken')
-const config = require('config')
+
 //
 // const adminMiddleware = require('../middleware/adminAuth.middleware')
 const router = Router()

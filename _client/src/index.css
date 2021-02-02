@@ -15,21 +15,21 @@
 @import "style/rangeSlider.css";
 @import "style/checkboxList.css";
 @import "style/widget.css";
+@import "style/profile.css";
+@import "style/auth.css";
+@import "style/modal.css";
 
 body {
     padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 #root {
-    min-height: 100vh;
     position: relative;
-
 }
 
 .main-container {
@@ -38,7 +38,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    min-height: 100vh;
+    min-height: calc(100vh - 220px);
 }
 
 .main-container > *:not(:first-child) {
@@ -83,3 +83,15 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+.wrap {
+    white-space: normal !important;
+}
+
+.error-text {
+    color: #ff0000;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+

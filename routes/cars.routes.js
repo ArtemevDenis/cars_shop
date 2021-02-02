@@ -38,7 +38,7 @@ router.get('/full', async function (req, res) {
     }
 )
 
-router.get('', async function (req, res) {
+router.get('', function (req, res) {
         const {minPrice, maxPrice, minYear, maxYear, minMileage, maxMileage, brands, limit} = req.query;
         let params = [];
         let selectCars = 'select cars.* , brands.name  AS brand, carsimages.img from cars left join  brands on cars.brandID = brands.ID  left join  carsimages  on  cars.ID = carsimages.carID '

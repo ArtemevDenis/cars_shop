@@ -85,6 +85,8 @@
     border: 0 none;
     -webkit-appearance: none;
     background-color: red;
+
+    cursor: pointer;
 }
 
 .input-range__box-ranger {
