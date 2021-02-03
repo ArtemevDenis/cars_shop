@@ -4,20 +4,20 @@ const router = Router()
 
 
 router.get('/full', async function (req, res) {
-        const {id} = req.query;
+    const {id} = req.query;
 
-        const selectCars = 'select cars.* , brands.name AS brand from cars left join  brands on cars.brandID = brands.ID  where cars.ID = ?'
-        const selectImage = 'select * from carsimages where carID = ?'
+    const selectCars = 'select cars.* , brands.name AS brand from cars left join  brands on cars.brandID = brands.ID  where cars.ID = ?';
+    const selectImage = 'select * from carsimages where carID = ?';
     const selectReviews = 'select reviews.* , avatars.img ,users.avatarID,users.name from reviews left join users on users.ID = reviews.userID  left join  avatars  on  users.avatarID = avatars.ID  where carID = ? order by reviews.date desc'
     const params = [id];
-        const output = {};
-        global.connectionMYSQL.execute(selectCars, params)
-            .then(results =>
-                output.car = results[0][0]
-            )
-            .then(() =>
-                global.connectionMYSQL.execute(selectImage, params)
-            )
+    const output = {};
+    global.connectionMYSQL.execute(selectCars, params)
+        .then(results =>
+            output.car = results[0][0]
+        )
+        .then(() =>
+            global.connectionMYSQL.execute(selectImage, params)
+        )
             .then(results =>
                 output.imgs = results[0]
             )

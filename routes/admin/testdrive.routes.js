@@ -1,6 +1,4 @@
 const {Router} = require('express')
-
-//
 const adminMiddleware = require('../../middleware/admin.middleware')
 const router = Router()
 
