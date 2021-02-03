@@ -1,6 +1,7 @@
 import React from 'react'
 
-const TestDriveItem = ({testDrive, deleteTestDrive}) => {
+const AdminTestDriveItem = ({testDrive, deleteTestDrive}) => {
+
     return (
         <div className='test-drive-item'>
             <div className='test-drive-item__data'>
@@ -11,6 +12,12 @@ const TestDriveItem = ({testDrive, deleteTestDrive}) => {
                 className='test-drive-item__value'>{testDrive.title} {testDrive.name}</p>
                 <p className='test-drive-item__label'>Адрес:</p><p
                 className='test-drive-item__value'>{testDrive.address}</p>
+                <p className='test-drive-item__label'>Заказчик:</p><p
+                className='test-drive-item__value'>{testDrive.userSurname} {testDrive.userName}</p>
+                <p className='test-drive-item__label'>Контактная информация:</p><p
+                className='test-drive-item__value'>email: <a
+                href={`mailto:${testDrive.email}`}>{testDrive.email}</a> тел.: <a
+                href={`tel:${testDrive.phone}`}>{testDrive.phone}</a></p>
             </div>
             <div
                 className='test-drive-item__action'
@@ -22,4 +29,4 @@ const TestDriveItem = ({testDrive, deleteTestDrive}) => {
     )
 }
 
-export default TestDriveItem
+export default AdminTestDriveItem
