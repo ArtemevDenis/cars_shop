@@ -34,7 +34,6 @@ export const useAuth = () => {
     }, [])
 
     useEffect(() => {
-        console.log('run useEffect ')
         const data = JSON.parse(localStorage.getItem(storageName))
 
         if (data && data.token) {
@@ -43,7 +42,6 @@ export const useAuth = () => {
     }, [login])
 
     const loadData = useCallback(() => {
-        console.log('run useEffect ')
         const data = JSON.parse(localStorage.getItem(storageName))
 
         if (data && data.token) {

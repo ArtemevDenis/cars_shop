@@ -6,6 +6,7 @@ import Header from "./header";
 import Footer from "./footer";
 import {useRouteMatch} from "react-router-dom";
 import Sidebar from "./profile/Sidebar";
+import AdminFooter from "./admin/footer";
 
 
 function Root() {
@@ -15,7 +16,6 @@ function Root() {
     const matchProfile = useRouteMatch('/profile');
     const {isAdmin} = useContext(UserContext)
     if (matchLogin || matchRegistration) {
-        console.log('redirect')
         return (
             <div className='inner'>
                 {routes}
@@ -36,10 +36,9 @@ function Root() {
     } else
         return (
             <main className='main-container'>
-                {isAdmin === 'admin' ? <AdminHeader/> : <Header/>}
+                {isAdmin ? <AdminHeader/> : <Header/>}
                 {routes}
-                <Footer/>
-
+                {isAdmin ? <AdminFooter/> : <Footer/>}
             </main>
         );
 }

@@ -38,7 +38,7 @@ const Login = () => {
                 to='/'>на главную</NavLink>
             </div>
             <div className='auth__input_block'>
-                <lable className='widget--title'>Email</lable>
+                <label className='widget--title'>Email</label>
                 <input
                     className='widget--input'
                     id='email'
@@ -49,7 +49,7 @@ const Login = () => {
                 />
             </div>
             <div className='auth__input_block'>
-                <lable className='widget--title'>Пароль</lable>
+                <label className='widget--title'>Пароль</label>
                 <input
                     className='widget--input'
                     id='password'

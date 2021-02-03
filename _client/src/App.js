@@ -12,7 +12,6 @@ function App() {
 
 
     useEffect(() => {
-        console.log('set token')
     }, [token])
 
     useEffect(() => {

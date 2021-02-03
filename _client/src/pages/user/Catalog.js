@@ -29,7 +29,6 @@ const Catalog = () => {
     }
 
     const loadCars = () => {
-        console.log('loadCars')
         request(`/api/v1/cars${buildRequestParams()}`)
             .then(setCars)
     }

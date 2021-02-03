@@ -64,7 +64,6 @@ router.post(
         global.connectionMYSQL.execute(sqlCreateAvatars, [filename])
             .then(r => {
                 const avatarID = r[0].insertId
-                console.log(email, password, passwordRepeat, phone, name, surname)
                 return global.connectionMYSQL.execute(sqlCreateUser, [name, surname, phone, email, password, avatarID])
 
             })
@@ -78,11 +77,9 @@ router.post(
             })
             .catch(e => {
                     if (e.errno === 1062) {
-                        console.log("пользователь уже существует")
                         res.status(500).json({error: 'Email уже занят'})
                     }
-                    console.log(e)
-                    res.status(500).json({error: 'Упс, что то пошло не так...'})
+                    res.status(500).json({error: e})
                 }
             )
     }

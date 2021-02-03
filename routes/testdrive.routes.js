@@ -25,7 +25,6 @@ router.get('', authMiddleware, function (req, res) {
         const select = 'select testdrives.ID, testdrives.date, testdrives.carID, testdrives.address, cars.title, brands.name from testdrives inner join cars on cars.ID = testdrives.carID inner join brands on cars.brandID = brands.ID  where userID = ? order by testdrives.date'
         global.connectionMYSQL.execute(select, [id])
             .then(r => {
-                console.log(r[0])
                 if (r[0].length >= 1)
                     res.json(r[0])
                 else
@@ -47,7 +46,6 @@ router.delete('', authMiddleware, function (req, res) {
             .then(() =>
                 global.connectionMYSQL.execute(select, [userID]))
             .then(r => {
-                console.log(r[0])
                 if (r[0].length >= 1)
                     res.json(r[0])
                 else

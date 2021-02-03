@@ -13,7 +13,7 @@ const Sidebar = () => {
     }
 
     return (
-        <sidebar className='sidebar'>
+        <div className='sidebar'>
             <div className='sidebar__main-block'>
                 <NavLink
                     exact
@@ -36,7 +36,7 @@ const Sidebar = () => {
                 </NavLink>
             </div>
             <button className='button--primary' onClick={logoutHandler}>Выйти</button>
-        </sidebar>
+        </div>
     )
 }
 

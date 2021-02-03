@@ -10,6 +10,10 @@ import Login from "../pages/Login";
 import Registration from "../pages/Registaration";
 import TestDrives from "../pages/user/TestDrives";
 import Favorite from "../pages/user/Favorite";
+import AdminTestDrive from "../pages/admin/AdminTestDrive";
+import AdminUser from "../pages/admin/AdminUsers";
+import AdminCars from "../pages/admin/AdminCars";
+import AdminCreateCar from "../pages/admin/AdminCreateCar";
 
 const AdminRoute = ({children, ...rest}) => {
     const {isAdmin} = useContext(UserContext)
@@ -25,9 +29,7 @@ const AdminRoute = ({children, ...rest}) => {
 }
 
 const ProtectRoute = ({children, ...rest}) => {
-    console.log(1212)
     const {isAuth} = useContext(UserContext)
-    console.log(isAuth)
     return <Route {...rest}
                   render={
                       () => {
@@ -40,29 +42,6 @@ const ProtectRoute = ({children, ...rest}) => {
 }
 
 export const useRoutes = () => {
-
-    const {isAdmin} = useContext(UserContext)
-
-    const adminRouters = <>
-        <AdminRoute path={"/admin/slider"} exact>
-            {/*<SliderEdit/>*/}
-        </AdminRoute>
-        <AdminRoute path={"/admin/slider"} exact>
-            {/*<SliderEdit/>*/}
-        </AdminRoute>
-        <AdminRoute path={"/admin/slider"} exact>
-            {/*<SliderEdit/>*/}
-        </AdminRoute>
-
-        <Redirect to={"/404"}/>
-    </>
-
-    let defaultRouters = <>
-
-
-        {/*<Redirect to={"/home"}/>*/}
-    </>
-
     return (
         <Switch>
             <Route path={"/404"}>
@@ -86,9 +65,20 @@ export const useRoutes = () => {
             <Route path={"/registration"}>
                 <Registration/>
             </Route>
-            <AdminRoute path={"/admin/slider"}>
-                {/*<SliderEdit/>*/}
+            <AdminRoute path={"/admin/test-drives"}>
+                <AdminTestDrive/>
             </AdminRoute>
+            <AdminRoute path={"/admin/users"}>
+                <AdminUser/>
+            </AdminRoute>
+            <AdminRoute path={"/admin/cars"} exact>
+                <AdminCars/>
+            </AdminRoute>
+            <AdminRoute path={"/admin/cars/:id"}>
+                <AdminCreateCar/>
+            </AdminRoute>
+
+
             <ProtectRoute path={"/profile"} exact>
                 <Profile/>
             </ProtectRoute>

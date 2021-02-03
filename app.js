@@ -23,6 +23,7 @@ app.use('/api/v1/auth', require('./routes/auth.routes'))
 app.use('/api/v1/user', require('./routes/user.router'))
 app.use('/api/v1/favorite', require('./routes/favorite.routes'))
 app.use('/api/v1/test-drives', require('./routes/testdrive.routes'))
+app.use('/api/v1/admin/users', require('./routes/admin/users.routes'))
 
 
 const PORT = config.get('port') || 5000;

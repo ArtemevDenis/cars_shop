@@ -13,7 +13,6 @@ const Profile = () => {
     })
     const [imgLink, setImgLink] = useState(null)
     const {token} = useContext(UserContext)
-
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value})
     }
@@ -33,7 +32,6 @@ const Profile = () => {
                     headers
                 })
                 const res = await req.json()
-                console.log(res)
                 if (!res.error)
                     resolve(res)
                 else
@@ -69,9 +67,9 @@ const Profile = () => {
                 <div>
                     <div className='profile-content__input_block'>
 
-                        <lable className='widget--title'>
+                        <label className='widget--title'>
                             Имя
-                        </lable>
+                        </label>
                         <input
                             className='widget--input widget--input--dark'
                             id='name'
@@ -82,9 +80,9 @@ const Profile = () => {
                         />
                     </div>
                     <div className='profile-content__input_block'>
-                        <lable className='widget--title'>
+                        <label className='widget--title'>
                             Фамилия
-                        </lable>
+                        </label>
                         <input
                             className='widget--input widget--input--dark'
                             id='surname'
@@ -95,9 +93,9 @@ const Profile = () => {
                         />
                     </div>
                     <div className='profile-content__input_block'>
-                        <lable className='widget--title'>
+                        <label className='widget--title'>
                             Email
-                        </lable>
+                        </label>
                         <input
                             className='widget--input widget--input--dark'
                             id='email'
@@ -108,9 +106,9 @@ const Profile = () => {
                         />
                     </div>
                     <div className='profile-content__input_block'>
-                        <lable className='widget--title'>
+                        <label className='widget--title'>
                             Телефон
-                        </lable>
+                        </label>
                         <input
                             className='widget--input widget--input--dark'
                             id='phone'

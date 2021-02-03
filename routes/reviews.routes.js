@@ -32,7 +32,7 @@ router.post('', authMiddleware, function (req, res) {
 
         const insertReviews = 'insert into reviews (text, carID, userID, date) values (?, ?, ?, ?)'
 
-        const date = new Date().toISOString().slice(0, 10).replace('T', ' ');
+        const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
         global.connectionMYSQL.execute(insertReviews, [review, carID, userID, date])
             .then(r => {
                 res.json(r[0])

@@ -29,7 +29,6 @@ const Registration = () => {
                     body: formData
                 })
                 const res = await req.json()
-                console.log(res)
                 if (!res.error)
                     resolve(res)
                 else
@@ -50,9 +49,9 @@ const Registration = () => {
             </div>
             <div className='registration'>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Email
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='email'
@@ -63,9 +62,9 @@ const Registration = () => {
                     />
                 </div>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Телефон
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='phone'
@@ -76,9 +75,9 @@ const Registration = () => {
                     />
                 </div>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Пароль
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='password'
@@ -89,9 +88,9 @@ const Registration = () => {
                     />
                 </div>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Пароль повторно
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='passwordRepeat'
@@ -103,9 +102,9 @@ const Registration = () => {
                 </div>
                 <div className='auth__input_block'>
 
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Имя
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='name'
@@ -116,9 +115,9 @@ const Registration = () => {
                     />
                 </div>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Фамилия
-                    </lable>
+                    </label>
                     <input
                         className='widget--input'
                         id='surname'
@@ -129,9 +128,9 @@ const Registration = () => {
                     />
                 </div>
                 <div className='auth__input_block'>
-                    <lable className='widget--title'>
+                    <label className='widget--title'>
                         Аватар
-                    </lable>
+                    </label>
                     <input
 
                         className='widget--upload'

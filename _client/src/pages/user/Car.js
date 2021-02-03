@@ -60,7 +60,7 @@ const Car = () => {
     }
 
     const signUpTestDrive = () => {
-        const newDate = new Date(form.date).toISOString().slice(0, 10).replace('T', ' ');
+        const newDate = new Date(form.date).toISOString().slice(0, 19).replace('T', ' ');
         request(`/api/v1/test-drives?carID=${carID}&date=${newDate}&address=${form.address}`, 'POST', null, {Authorization: `Bearer ${token}`})
             .then(
                 r => {
@@ -131,7 +131,7 @@ const Car = () => {
                     <h2>Запись на тестдрайв</h2>
                     <div className='sign-up-test-drive'>
                         <div className='sign-up-test-drive__input_block'>
-                            <lable className='widget--title'>Адрес:</lable>
+                            <label className='widget--title'>Адрес:</label>
                             <input
                                 className='widget--input widget--input--dark'
                                 id='address'
@@ -142,7 +142,7 @@ const Car = () => {
                             />
                         </div>
                         <div className='sign-up-test-drive__input_block'>
-                            <lable className='widget--title'>Дата:</lable>
+                            <label className='widget--title'>Дата:</label>
                             <input
                                 className='widget--input widget--input--dark'
                                 id='date'
