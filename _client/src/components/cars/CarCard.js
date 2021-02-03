@@ -16,10 +16,14 @@ const CarCard = ({car}) => {
             </div>
             <div className="car__info">
                 <div className="car__description">
-                    <p className="car__title">{car.brand}</p>
-                    <p className="car__text">{car.title}</p>
+                    <p className="car__brand">{car.brand}</p>
+                    <p className="car__title">{car.title}</p>
+                    <p className="car__price">{car.price}₽</p>
+
+                    <div className='car__favorite-icon'>
+                        <Favorite id={car.ID}/>
+                    </div>
                 </div>
-                <Favorite id={car.ID}/>
             </div>
         </div>
     )

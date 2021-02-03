@@ -82,7 +82,7 @@ CREATE TABLE users
     name     VARCHAR(1000)         NOT NULL,
     surname  VARCHAR(1000)         NOT NULL,
     phone    VARCHAR(1000)         NOT NULL,
-    email    VARCHAR(100)         NOT NULL UNIQUE,
+    email    VARCHAR(100)          NOT NULL UNIQUE,
     password VARCHAR(1000)         NOT NULL,
     avatarID VARCHAR(1000)         NOT NULL REFERENCES avatars (ID),
     role     ENUM ('user','admin') NOT NULL default 'user',
@@ -114,7 +114,7 @@ create table testDrives
     ID      MEDIUMINT     NOT NULL AUTO_INCREMENT,
     carID   MEDIUMINT     NOT NULL REFERENCES cars (ID),
     userID  MEDIUMINT     NOT NULL REFERENCES users (ID),
-    data    DATE          NOT NULL,
+    date    DATE          NOT NULL,
     address VARCHAR(1000) NOT NULL,
     PRIMARY KEY (ID)
 );

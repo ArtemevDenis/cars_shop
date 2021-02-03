@@ -22,6 +22,7 @@ app.use('/api/v1/limits', require('./routes/limits.routes'))
 app.use('/api/v1/auth', require('./routes/auth.routes'))
 app.use('/api/v1/user', require('./routes/user.router'))
 app.use('/api/v1/favorite', require('./routes/favorite.routes'))
+app.use('/api/v1/test-drives', require('./routes/testdrive.routes'))
 
 
 const PORT = config.get('port') || 5000;
@@ -33,16 +34,6 @@ const connection = mysql.createPool({
     database: config.get('database'),
     password: config.get('password')
 }).promise();
-
-function twoDigits(d) {
-    if (0 <= d && d < 10) return "0" + d.toString();
-    if (-10 < d && d < 0) return "-0" + (-1 * d).toString();
-    return d.toString();
-}
-
-Date.prototype.toMysqlFormat = function () {
-    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
-};
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -65,4 +56,16 @@ async function start() {
 }
 
 start();
+
+
+function twoDigits(d) {
+    if (0 <= d && d < 10) return "0" + d.toString();
+    if (-10 < d && d < 0) return "-0" + (-1 * d).toString();
+    return d.toString();
+}
+
+Date.prototype.toMysqlFormat = function () {
+    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+};
+
 global.connectionMYSQL = connection;

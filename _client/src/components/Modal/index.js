@@ -2,7 +2,8 @@ import React from 'react'
 
 const Modal = ({active, setActive, children}) => {
     return (
-        <div className={active ? 'modal active' : 'modal'} onClick={() => {
+        <div className={active ? 'modal active' : 'modal'} onClick={(e) => {
+            e.stopPropagation()
             setActive(false)
         }}>
             <div className={active ? 'modal__content active' : 'modal__content'} onClick={(e) => {

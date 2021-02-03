@@ -8,8 +8,8 @@ router.get('/full', async function (req, res) {
 
         const selectCars = 'select cars.* , brands.name AS brand from cars left join  brands on cars.brandID = brands.ID  where cars.ID = ?'
         const selectImage = 'select * from carsimages where carID = ?'
-        const selectReviews = 'select reviews.* , avatars.img ,users.avatarID,users.name from reviews left join users on users.ID = reviews.userID  left join  avatars  on  users.avatarID = avatars.ID  where carID = ?'
-        const params = [id];
+    const selectReviews = 'select reviews.* , avatars.img ,users.avatarID,users.name from reviews left join users on users.ID = reviews.userID  left join  avatars  on  users.avatarID = avatars.ID  where carID = ? order by reviews.date desc'
+    const params = [id];
         const output = {};
         global.connectionMYSQL.execute(selectCars, params)
             .then(results =>
@@ -48,7 +48,7 @@ router.get('', function (req, res) {
             const stringParams = brands.split(',').map(brand => `"${brand}"`).join(',')
             selectCars += `AND brands.name IN (${stringParams}) `;
         }
-        selectCars += ' group by carsimages.carID, cars.date order by cars.date ';
+    selectCars += ' group by carsimages.carID, cars.date order by cars.date desc ';
         if (limit !== undefined) {
             selectCars += 'limit ?';
             params.push(limit);

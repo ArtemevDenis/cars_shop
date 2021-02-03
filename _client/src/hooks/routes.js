@@ -5,7 +5,6 @@ import NotFound from "../pages/404";
 import Main from "../pages/user/Main";
 import Car from "../pages/user/Car";
 import Catalog from "../pages/user/Catalog";
-import About from "../pages/user/About";
 import Profile from "../pages/user/Profile";
 import Login from "../pages/Login";
 import Registration from "../pages/Registaration";
@@ -80,9 +79,6 @@ export const useRoutes = () => {
             </Route>
             <Route path={"/catalog"}>
                 <Catalog/>
-            </Route>
-            <Route path={"/about"}>
-                <About/>
             </Route>
             <Route path={"/login"}>
                 <Login/>

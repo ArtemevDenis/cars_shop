@@ -4,6 +4,7 @@
     grid-column-gap: 85px;
     grid-template-areas: 'slider aside'
                          'description aside'
+                         'add-review add-review'
                          'reviews reviews';
 }
 
@@ -23,6 +24,9 @@
     grid-area: reviews;
 }
 
+.product-view__add-reviews {
+    grid-area: add-review;
+}
 
 .aside {
     background: white;
@@ -78,4 +82,32 @@
 
 .sign-up-test-drive__input_block + .sign-up-test-drive__input_block {
     margin-top: 30px;
+}
+
+.add-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: relative;
+}
+
+.add-reviews__textarea {
+    resize: none;
+}
+
+.add-reviews__title {
+    margin: 0;
+    padding: 0;
+}
+
+.add-reviews__button {
+    position: relative;
+    max-width: 300px;
+    text-align: right;
+    right: 0;
+    bottom: 0;
+}
+
+.add-reviews > * + * {
+    margin-top: 20px;
 }

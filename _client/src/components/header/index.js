@@ -29,12 +29,6 @@ const Header = () => {
                                 activeClassName="navigation__link--active"
 
                                 to="/catalog">Каталог</NavLink></li>
-                        <li className="navigation__item">
-                            <NavLink
-                                exact
-                                className="navigation__link navigation__link--hover navigation__link--p20"
-                                activeClassName="navigation__link--active"
-                                to="/about">О нас</NavLink></li>
                         {user.isAuth
                             ? <li className="navigation__item">
                                 <NavLink

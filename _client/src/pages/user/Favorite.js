@@ -17,12 +17,15 @@ const Favorite = () => {
         loadCars()
     }, [])
     return (
-        <div className='catalog__list'>
-            {(cars && cars.length !== 0)
-                ? cars.map(car =>
-                    <CarCard key={car.ID} car={car}/>
-                )
-                : <p>У вас нет машин в избранном</p>}
+        <div>
+            <h2>Избранные модели</h2>
+            <div className='catalog__list'>
+                {(cars && cars.length !== 0)
+                    ? cars.map(car =>
+                        <CarCard key={car.ID} car={car}/>
+                    )
+                    : <p>У вас нет машин в избранном</p>}
+            </div>
         </div>
     )
 }

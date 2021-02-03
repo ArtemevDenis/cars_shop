@@ -26,7 +26,8 @@
 }
 
 .car__favorite {
-    position: relative;
+    position: absolute;
+    right: 0;
 }
 
 
@@ -58,6 +59,43 @@
     padding: 0 10px;
     box-sizing: border-box;
 }
+
+.car__description {
+    width: 100%;
+    display: grid;
+    grid-template-areas: 'brand favorite'
+                         'title price';
+    column-gap: 30px;
+    row-gap: 10px;
+    margin-bottom: 5px;
+}
+
+.car__brand, .car__title, .car__price {
+    font-size: .9rem;
+    margin: 0;
+    padding: 5px;
+}
+
+.car__favorite-icon {
+    position: relative;
+}
+
+.car__brand {
+    grid-area: brand;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.car__title {
+    grid-area: title;
+}
+
+.car__price {
+    text-align: right;
+    grid-area: price;
+    font-weight: bold;
+}
+
 
 .car:hover .car__img {
     filter: grayscale(0%);

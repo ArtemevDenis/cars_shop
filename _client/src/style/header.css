@@ -2,7 +2,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 10000;
+    z-index: 10;
     width: 100%;
     background: #adb5bd;
     transition: all 0.3s ease-in-out;

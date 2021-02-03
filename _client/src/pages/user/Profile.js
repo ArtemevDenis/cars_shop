@@ -62,66 +62,70 @@ const Profile = () => {
 
 
     return (
-        <div className='profile-content'>
-            <div>
-                <div className='profile-content__input_block'>
+        <div>
+            <h2>Персональные данные</h2>
+            <div className='profile-content'>
 
-                    <lable className='widget--title'>
-                        Имя
-                    </lable>
-                    <input
-                        className='widget--input widget--input--dark'
-                        id='name'
-                        name='name'
-                        type='text'
-                        value={form.name}
-                        onChange={changeHandler}
-                    />
+                <div>
+                    <div className='profile-content__input_block'>
+
+                        <lable className='widget--title'>
+                            Имя
+                        </lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='name'
+                            name='name'
+                            type='text'
+                            value={form.name}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='profile-content__input_block'>
+                        <lable className='widget--title'>
+                            Фамилия
+                        </lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='surname'
+                            name='surname'
+                            type='text'
+                            value={form.surname}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='profile-content__input_block'>
+                        <lable className='widget--title'>
+                            Email
+                        </lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='email'
+                            name='email'
+                            type='email'
+                            value={form.email}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='profile-content__input_block'>
+                        <lable className='widget--title'>
+                            Телефон
+                        </lable>
+                        <input
+                            className='widget--input widget--input--dark'
+                            id='phone'
+                            name='phone'
+                            type='phone'
+                            value={form.phone}
+                            onChange={changeHandler}
+                        />
+                    </div>
+                    <div className='profile-content__input_block'>
+                        <button className='button--primary' onClick={updateHandler}>Обновить данные</button>
+                    </div>
                 </div>
-                <div className='profile-content__input_block'>
-                    <lable className='widget--title'>
-                        Фамилия
-                    </lable>
-                    <input
-                        className='widget--input widget--input--dark'
-                        id='surname'
-                        name='surname'
-                        type='text'
-                        value={form.surname}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div className='profile-content__input_block'>
-                    <lable className='widget--title'>
-                        Email
-                    </lable>
-                    <input
-                        className='widget--input widget--input--dark'
-                        id='email'
-                        name='email'
-                        type='email'
-                        value={form.email}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div className='profile-content__input_block'>
-                    <lable className='widget--title'>
-                        Телефон
-                    </lable>
-                    <input
-                        className='widget--input widget--input--dark'
-                        id='phone'
-                        name='phone'
-                        type='phone'
-                        value={form.phone}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div className='profile-content__input_block'>
-                    <button className='button--primary' onClick={updateHandler}>Обновить данные</button>
-                </div>
+                <ImageUpload link={imgLink} selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
             </div>
-            <ImageUpload link={imgLink} selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
         </div>
     )
 }
