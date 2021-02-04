@@ -6,7 +6,7 @@ import CatalogFilter from "../../components/catalog/CatalogFilter";
 const initFilter = {
     minPrice: 0,
     maxPrice: 4294967294,
-    minYear: 2010,
+    minYear: 0,
     maxYear: 4294967294,
     minMileage: 0,
     maxMileage: 4294967294,

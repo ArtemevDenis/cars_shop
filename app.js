@@ -25,6 +25,7 @@ app.use('/api/v1/favorite', require('./routes/favorite.routes'))
 app.use('/api/v1/test-drives', require('./routes/testdrive.routes'))
 app.use('/api/v1/admin/users', require('./routes/admin/users.routes'))
 app.use('/api/v1/admin/test-drives', require('./routes/admin/testdrive.routes'))
+app.use('/api/v1/admin/cars', require('./routes/admin/cars.routes'))
 
 
 const PORT = config.get('port') || 5000;

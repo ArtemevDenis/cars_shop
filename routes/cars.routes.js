@@ -48,7 +48,7 @@ router.get('', function (req, res) {
             const stringParams = brands.split(',').map(brand => `"${brand}"`).join(',')
             selectCars += `AND brands.name IN (${stringParams}) `;
         }
-    selectCars += ' group by carsimages.carID, cars.date order by cars.date desc ';
+        selectCars += ' order by cars.date desc ';
         if (limit !== undefined) {
             selectCars += 'limit ?';
             params.push(limit);
@@ -56,6 +56,7 @@ router.get('', function (req, res) {
 
         global.connectionMYSQL.execute(selectCars, params)
             .then(results => {
+                // console.log(results)
                 res.json(results[0]);
             }).catch(e => {
             res.json({error: e})
