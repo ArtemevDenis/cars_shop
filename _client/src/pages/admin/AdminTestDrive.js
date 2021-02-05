@@ -12,7 +12,6 @@ const AdminTestDrive = () => {
     const loadTestDrives = () => {
         request('/api/v1/admin/test-drives', 'GET', null, {Authorization: `Bearer ${token}`})
             .then((r) => {
-                console.log(r)
                 if (r.message) {
                     setMessage(r.message)
                     setTestDrives(null)
@@ -29,8 +28,6 @@ const AdminTestDrive = () => {
     const deleteTestDrive = (id) => {
         request(`/api/v1/admin/test-drives?id=${id}`, 'DELETE', null, {Authorization: `Bearer ${token}`})
             .then((r) => {
-                console.log(r)
-
                 if (r.message) {
                     setMessage(r.message)
                     setTestDrives(null)

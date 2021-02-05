@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {NavLink} from "react-router-dom";
 
 const AdminFooter = () => {
-    useEffect(()=>{
-        console.log('wefwefwef')}, [])
+
     return (
         <footer className="footer">
             <div className="wrapper">

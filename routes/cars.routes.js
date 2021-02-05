@@ -8,7 +8,7 @@ router.get('/full', async function (req, res) {
 
     const selectCars = 'select cars.* , brands.name AS brand from cars left join  brands on cars.brandID = brands.ID  where cars.ID = ?';
     const selectImage = 'select * from carsimages where carID = ?';
-    const selectReviews = 'select reviews.* , avatars.img ,users.avatarID,users.name from reviews left join users on users.ID = reviews.userID  left join  avatars  on  users.avatarID = avatars.ID  where carID = ? order by reviews.date desc'
+    const selectReviews = 'select reviews.* , avatars.img ,users.avatarID,users.name from reviews left join users on users.ID = reviews.userID  left join  avatars  on  users.avatarID = avatars.ID  where carID = ? order by reviews.date  desc'
     const params = [id];
     const output = {};
     global.connectionMYSQL.execute(selectCars, params)
@@ -48,15 +48,14 @@ router.get('', function (req, res) {
             const stringParams = brands.split(',').map(brand => `"${brand}"`).join(',')
             selectCars += `AND brands.name IN (${stringParams}) `;
         }
-        selectCars += ' order by cars.date desc ';
+        selectCars += ' group by cars.ID  order by cars.date desc ';
         if (limit !== undefined) {
             selectCars += 'limit ?';
-            params.push(limit);
+            params.push(limit)
         }
 
         global.connectionMYSQL.execute(selectCars, params)
             .then(results => {
-                // console.log(results)
                 res.json(results[0]);
             }).catch(e => {
             res.json({error: e})

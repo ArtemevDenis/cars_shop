@@ -7,7 +7,7 @@ const Reviews = ({reviews}) => {
     return (
         <section className="content">
             <div className="comments-blog">
-                <h2 className="comments-blog__title">Отзовы клиентов</h2>
+                <h2 className="comments-blog__title">Отзывы клиентов</h2>
                 <div className="comments-blog__item">
                     {reviews && reviews.length !== 0
                         ? reviews.map(review => <ReviewCard key={review.ID} review={review}/>)

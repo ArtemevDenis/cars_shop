@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {UserContext} from "../../context/AuthContext";
 import {useHttp} from "../../hooks/http.hook";
 import CarItem from "../../components/admin/CarItem";
+import {NavLink} from "react-router-dom";
 
 const AdminCars = () => {
     const [cars, setCars] = useState(null)
@@ -23,6 +24,14 @@ const AdminCars = () => {
     return (
         <div className='content'>
             <h2>Список машин</h2>
+            <NavLink
+                className='button--primary link--clear link-back'
+                style={{    width: 100+'%',
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: 10+'px'}}
+                to={'/admin/cars/create'}>Создать новую</NavLink>
             {cars && cars.map((car) =>
                 <CarItem key={car.ID} car={car} deleteHandler={deleteCar}/>
             )}

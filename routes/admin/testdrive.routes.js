@@ -18,19 +18,24 @@ router.get('', adminMiddleware, function (req, res) {
 )
 
 router.delete('', adminMiddleware, function (req, res) {
-        const userID = req.user.userID;
-        const {id} = req.query;
 
-        const deleteSQL = 'delete from testdrives where ID = ?'
-        const select = 'select testdrives.ID, testdrives.date, testdrives.carID, testdrives.address, cars.title, brands.name from testdrives inner join cars on cars.ID = testdrives.carID inner join brands on cars.brandID = brands.ID  where userID = ? order by testdrives.date'
+    const {id} = req.query;
 
-        global.connectionMYSQL.execute(deleteSQL, [id])
-            .then(() =>
-                global.connectionMYSQL.execute(select, [userID]))
-            .then(r => {
-                if (r[0].length >= 1)
-                    res.json(r[0])
-                else
+    const deleteSQL = 'delete from testdrives where ID = ?'
+    const deleteReviewsSQL = 'delete from reviews where userID = ?'
+    const deleteTestDriveSQL = 'delete from testdrives where userID = ?'
+    const deleteAvatarSQL = 'delete from testdrives  where ID = (select users.avatarID from users where ID = ? )'
+    const select = 'select testdrives.ID, testdrives.date, testdrives.carID, testdrives.address, cars.title, brands.name from testdrives inner join cars on cars.ID = testdrives.carID inner join brands on cars.brandID = brands.ID  order by testdrives.date'
+
+    global.connectionMYSQL.execute(deleteSQL, [id])
+        .then(() => global.connectionMYSQL.execute(deleteReviewsSQL, [id]))
+        .then(() => global.connectionMYSQL.execute(deleteTestDriveSQL, [id]))
+        .then(() => global.connectionMYSQL.execute(deleteAvatarSQL, [id]))
+        .then(() => global.connectionMYSQL.execute(select))
+        .then(r => {
+            if (r[0].length >= 1)
+                res.json(r[0])
+            else
                     res.json({message: 'в списке нет предстоящих тест драйвов'})
             }).catch(e => {
             res.json({error: e})

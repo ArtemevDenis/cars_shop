@@ -43,69 +43,54 @@ router.delete('', adminMiddleware, function (req, res) {
 )
 
 
-router.post('/create', [adminMiddleware, upload.array('images')], function (req, res) {
-        let {carID, brand, price, year, mileage, title} = req.query;
-        let {description} = req.body
-        const img = req.files;
-        const params = [];
-        const curDate = new Date().toISOString().slice(0, 10).replace('T', ' ');
+router.post('/edit', [adminMiddleware, upload.array('images')], function (req, res) {
+    let {carID} = req.query;
+    let {brand, price, year, mileage, title} = JSON.parse(req.body.data);
+    let description = JSON.parse(req.body.description);
 
-        let carsSQl = ''
-        let getBrand = 'select brands.ID from brands where name = ?'
+    const img = req.files;
+    const params = [];
+    const curDate = new Date().toISOString().slice(0, 10).replace('T', ' ');
 
-
-        if (carID && carID !== 'null') {
-            carsSQl = 'update cars set price =?, year =?, brandID =?, mileage =?, title=?,date=?, description =? where ID =?'
-            params.push(price, year, mileage, title, curDate, description, carID)
-        } else {
-            carsSQl = 'insert into cars (price, year, brandID, mileage, date, title, description) values (?,?,?,?,?,?,?)'
-            params.push(price, year, mileage, curDate, title, description)
-        }
+    let carsSQl = ''
+    let getBrand = 'select * from brands where name = ?'
 
 
-        global.connectionMYSQL.execute(getBrand, [brand])
-            .then((r) => {
-                params.splice(2, 0, r[0][0].ID)
-                console.log(params.join(' '))
-                return global.connectionMYSQL.execute(carsSQl, params)
-            })
-            .then(r => {
-                if (r[0].insertId)
-                    carID = r[0].insertId
-                if (img) {
-                    const insertIntoProductsImg = 'insert into carsimages (img, carID) VALUES (?,?)'
+    if (carID && carID !== 'create') {
+        carsSQl = 'update cars set price =?, year =?, brandID =?, mileage =?, title=?,date=?, description =? where ID =?'
+        params.push(price, year, mileage, title, curDate, description, carID)
+    } else {
+        carsSQl = 'insert into cars (price, year, brandID, mileage, date, title, description) values (?,?,?,?,?,?,?)'
+        params.push(price, year, mileage, curDate, title, description)
+    }
+
+
+    global.connectionMYSQL.execute(getBrand, [brand])
+        .then((r) => {
+            params.splice(2, 0, r[0][0].ID)
+            return global.connectionMYSQL.execute(carsSQl, params)
+        })
+        .then(r => {
+            if (r[0].insertId) {
+                carID = r[0].insertId
+            }
+            if (img && img.length !== 0) {
+                const insertIntoProductsImg = 'insert into carsimages (img, carID) VALUES (?,?)'
+                return new Promise(resolve => {
                     for (let i = 0; i < img.length; i++)
                         global.connectionMYSQL.execute(insertIntoProductsImg, [img[i].filename, carID])
                             .catch(e => res.json({error: e}))
-                }
-            })
-            .then(() => {
-                res.json({message: 'ok'})
-            })
+                    resolve('ok')
+                })
+
+            }
+        })
+        .then(() => {
+            res.json({message: 'ok'})
+        })
             .catch(e => {
-                console.log(e)
+                res.json({error: e})
             })
-
-
-        // new Promise(async resolve => {
-        //     for (let i = 0; i < img.length; i++) {
-        //         const insertIntoProductsImg = 'insert into productsimg (img, productID) VALUES (?,?)'
-        //         await global.connectionMYSQL.execute(insertIntoProductsImg, [img[i].filename, productID],
-        //             function (err, results) {
-        //                 if (err) {
-        //                     console.error(err)
-        //                     res.status(500).json({error: 'Упс, что то пошло не так... соединение не установлено '})
-        //                 }
-        //             });
-        //     }
-
-        // global.connectionMYSQL.execute(selectCars)
-        //     .then(r => {
-        //         res.json(r[0])
-        //     })
-        //     .catch(e => {
-        //         res.json({error: e})
-        //     })
     }
 )
 

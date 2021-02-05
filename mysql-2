@@ -1,0 +1,117 @@
+create database cars;
+use cars;
+create table slider
+(
+    ID   MEDIUMINT    NOT NULL AUTO_INCREMENT,
+    img  VARCHAR(100) NOT NULL,
+    link VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID)
+);
+insert into slider (img, link)
+values ('car-49278_960_720.webp', '/'),
+       ('car-63930_960_720.webp', '/'),
+       ('car-1300629_960_720.webp', '/'),
+       ('car-race-438467_960_720.webp', '/');
+
+create table cars
+(
+    ID          MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    price       INT UNSIGNED  NOT NULL,
+    year        INT UNSIGNED  NOT NULL,
+    brandID     MEDIUMINT     NOT NULL REFERENCES brands (ID),
+    mileage     INT UNSIGNED  NOT NULL,
+    title       VARCHAR(1000) NOT NULL,
+    date        DATE          NOT NULL,
+    description MEDIUMTEXT    NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+
+create table brands
+(
+    ID   MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    name VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+insert into brands (name)
+values ('BMW'),
+       ('Mercedes'),
+       ('Лада'),
+       ('Audi'),
+       ('Renault'),
+       ('KIA'),
+       ('Hyundai'),
+       ('Volvo');
+
+create table carsImages
+(
+    ID    MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    img   VARCHAR(1000) NOT NULL,
+    carID MEDIUMINT     NOT NULL REFERENCES cars (ID),
+    PRIMARY KEY (ID)
+);
+
+
+CREATE TABLE avatars
+(
+    ID  MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    img VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO avatars (img)
+VALUES ('lion-1118467_960_720.webp'),
+       ('woman-1127201_960_720.webp'),
+       ('admin.jpg');
+
+CREATE TABLE users
+(
+    ID       MEDIUMINT             NOT NULL AUTO_INCREMENT,
+    name     VARCHAR(1000)         NOT NULL,
+    surname  VARCHAR(1000)         NOT NULL,
+    phone    VARCHAR(1000)         NOT NULL,
+    email    VARCHAR(100)          NOT NULL UNIQUE,
+    password VARCHAR(1000)         NOT NULL,
+    avatarID VARCHAR(1000)         NOT NULL REFERENCES avatars (ID),
+    role     ENUM ('user','admin') NOT NULL default 'user',
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO users (name, surname, phone, email, password, avatarID)
+VALUES ('Жанна', 'Муравьева', '89999999999', 'janna@email.email', 'janna', 2),
+       ('Илья', 'Гашиков', '89993738243', 'ilia@email.email', 'ilia', 1);
+
+INSERT INTO users (name, surname, phone, email, password, avatarID, role)
+VALUES ('admin', 'admin', '89999999999', 'admin@email.email', 'admin', 3, 'admin');
+
+
+CREATE TABLE reviews
+(
+    ID     MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    carID  MEDIUMINT     NOT NULL REFERENCES cars (ID),
+    userID MEDIUMINT     NOT NULL REFERENCES users (ID),
+    text   VARCHAR(1000) NOT NULL,
+    date   DATETIME      NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+
+create table testDrives
+(
+    ID      MEDIUMINT     NOT NULL AUTO_INCREMENT,
+    carID   MEDIUMINT     NOT NULL REFERENCES cars (ID),
+    userID  MEDIUMINT     NOT NULL REFERENCES users (ID),
+    date    DATETIME      NOT NULL,
+    address VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+create table favorite
+(
+    ID     MEDIUMINT NOT NULL AUTO_INCREMENT,
+    carID  MEDIUMINT NOT NULL REFERENCES cars (ID),
+    userID MEDIUMINT NOT NULL REFERENCES users (ID),
+    status BOOLEAN default false,
+    PRIMARY KEY (ID)
+)

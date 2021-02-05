@@ -1,0 +1,27 @@
+.car-edit {
+    display: flex;
+    flex-direction: column;
+}
+
+.car-edit__input-block {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.delete-item {
+    font-size: 1rem;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+}
+
+.delete-item:hover {
+    text-decoration: line-through;
+    background-color: #FF7C7C;
+}
+.car-edit__short-block{
+    width: 400px;
+}

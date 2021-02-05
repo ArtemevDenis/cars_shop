@@ -19,11 +19,15 @@ router.get('', adminMiddleware, function (req, res) {
 router.delete('', adminMiddleware, function (req, res) {
         const {userID} = req.query
         const deleteUser = 'delete from users where ID = ?'
+    const deleteReviews = 'delete from reviews where userID = ?'
 
         const selectUsers = "select users.ID, users.name, users.role, users.surname, users.email, users.phone, avatars.img AS avatar from users inner join avatars on avatars.ID = users.avatarID  where role=  'user'"
 
 
-        global.connectionMYSQL.execute(deleteUser, [userID])
+    global.connectionMYSQL.execute(deleteUser, [userID])
+        .then(() =>
+            global.connectionMYSQL.execute(deleteReviews, [userID])
+        )
             .then(() =>
                 global.connectionMYSQL.execute(selectUsers)
             )

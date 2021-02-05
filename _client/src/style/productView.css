@@ -53,8 +53,8 @@
     max-height: 13rem;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-size: 0.9rem;
-    line-height: 1.1rem;
+    font-size: 1rem;
+    line-height: 1rem;
     transition: all 2s ease-in-out;
 }
 
@@ -92,6 +92,7 @@
 }
 
 .add-reviews__textarea {
+    font-size: .9rem;
     resize: none;
 }
 
