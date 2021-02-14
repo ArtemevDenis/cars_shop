@@ -26,7 +26,7 @@ const CheckBoxesList = ({list, setList, title, selectedBrands, name}) => {
                         key={index}
                         value={list.name}
                         handler={checkHandler}
-                        isCheck={selectedBrands.indexOf(list.name) !== -1}
+                        isCheck={(selectedBrands && Array.isArray(selectedBrands)) ? selectedBrands.indexOf(list.name) !== -1 : false}
                     />
                 )}
             </div>

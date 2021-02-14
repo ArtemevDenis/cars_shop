@@ -4,15 +4,15 @@ import CheckBoxesList from "../inputs/CheckBoxesList";
 import {useHttp} from "../../hooks/http.hook";
 
 
-// const initFilter = {
-//     minPrice: 0,
-//     maxPrice: 4294967294,
-//     minYear: 0,
-//     maxYear: 4294967294,
-//     minMileage: 0,
-//     maxMileage: 4294967294,
-//     brands: null
-// }
+const initFilter = {
+    minPrice: 0,
+    maxPrice: 4294967294,
+    minYear: 0,
+    maxYear: 4294967294,
+    minMileage: 0,
+    maxMileage: 4294967294,
+    brands: []
+}
 
 const CatalogFilter = ({filterEdit, loadCars}) => {
     const [brandsList, setBrandsList] = useState(null)
@@ -21,8 +21,10 @@ const CatalogFilter = ({filterEdit, loadCars}) => {
 
     const {request} = useHttp()
 
+
     const loadFromLocal = () => {
-        return JSON.parse(localStorage.getItem('filter'))
+        const filterLocal = JSON.parse(localStorage.getItem('filter'))
+        return filterLocal ? filterLocal : null
     }
 
     const [filter, setFilter] = useState(() => {
@@ -39,7 +41,8 @@ const CatalogFilter = ({filterEdit, loadCars}) => {
         request(`/api/v1/limits`)
             .then(r => new Promise(resolve => {
                 setMinMaxValue(r)
-                // setFilter(r)
+                if (!filter)
+                    setFilter({...r, brands: []})
                 setReady(true)
                 resolve('ok')
             }))
@@ -70,7 +73,7 @@ const CatalogFilter = ({filterEdit, loadCars}) => {
     return (
         <div className='aside__filter'>
             {
-                ready &&
+                ready && filter &&
                 <>
                     <RangeSlider
                         title='Цена'
@@ -108,7 +111,7 @@ const CatalogFilter = ({filterEdit, loadCars}) => {
                 </>
             }
             {
-                brandsList &&
+                brandsList && filter &&
                 <CheckBoxesList
                     title='Марка'
                     name='brands'
