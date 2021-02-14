@@ -23,7 +23,7 @@ const Slider = ({sliderData}) => {
     return (
         <div className="slider">
             <div className="slider__wrapper" style={{transform: 'translateX(-' + currentPosition * 100 + '%)'}}>
-                {sliderData.map((slide, index) =>
+                {sliderData && sliderData.map((slide, index) =>
                     <div className="slider__item" key={index}>
                         <img className="slider__img" src={'/images/' + slide.img}/>
                     </div>

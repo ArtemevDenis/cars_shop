@@ -19,7 +19,6 @@ function App() {
     }, [])
 
     return (
-
         <UserContext.Provider value={{token, login, logout, userID, isAuth, isAdmin, email}}>
             {load && <Router>
                 <Root/>

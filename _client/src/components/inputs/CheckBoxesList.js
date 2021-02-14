@@ -1,31 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import CheckBox from "./CheckBox";
 
-const CheckBoxesList = ({list, setList, title}) => {
-
-    const [objectList, setObjectList] = useState({})
-
+const CheckBoxesList = ({list, setList, title, selectedBrands, name}) => {
+    const [objectList, setObjectList] = useState(selectedBrands)
     const checkHandler = (name) => {
-        const newObjList = Object.assign({}, objectList)
-        if (newObjList[name])
-            newObjList[name] = !newObjList[name]
+        if (objectList.includes(name))
+            setObjectList(objectList.filter(object =>
+                object !== name
+            ))
         else
-            newObjList[name] = true
-        setObjectList(newObjList)
-    }
-
-    const setData = () => {
-        const output = []
-        for (let key of Object.keys(objectList)) {
-            if (objectList[key] === true) {
-                output.push(key)
-            }
-        }
-        setList(output)
+            setObjectList([...objectList, name])
     }
 
     useEffect(() => {
-        setData()
+        setList({name: name, value: objectList})
     }, [objectList])
 
 
@@ -34,11 +22,15 @@ const CheckBoxesList = ({list, setList, title}) => {
             <p className="widget--title">{title}</p>
             <div className="widget--checkbox-block">
                 {list && list.map((list, index) =>
-                    <CheckBox key={index} value={list.name} handler={checkHandler}/>
+                    <CheckBox
+                        key={index}
+                        value={list.name}
+                        handler={checkHandler}
+                        isCheck={selectedBrands.indexOf(list.name) !== -1}
+                    />
                 )}
             </div>
         </div>
-
     )
 }
 

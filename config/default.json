@@ -3,7 +3,7 @@
   "jwtSecret": "dh7ds>Rge%?3",
   "baseUrl": "http://localhost:5000",
   "host": "localhost",
-  "user": "wintermax",
+  "user": "root",
   "database": "cars",
-  "password": "wintermax"
+  "password": "ms001100!!MS"
 }

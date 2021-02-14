@@ -3,20 +3,10 @@ import {useHttp} from "../../hooks/http.hook";
 import CarCard from "../../components/cars/CarCard";
 import CatalogFilter from "../../components/catalog/CatalogFilter";
 
-const initFilter = {
-    minPrice: 0,
-    maxPrice: 4294967294,
-    minYear: 0,
-    maxYear: 4294967294,
-    minMileage: 0,
-    maxMileage: 4294967294,
-    brands: null
-}
-
 const Catalog = () => {
     const {request} = useHttp()
     const [cars, setCars] = useState(null)
-    const [filter, setFilter] = useState(initFilter)
+    const [filter, setFilter] = useState({})
 
 
     const buildRequestParams = () => {
@@ -37,11 +27,6 @@ const Catalog = () => {
     const filterEdit = (newFilter) => {
         setFilter(newFilter)
     }
-
-    // useEffect(() => {
-    //     loadCars()
-    // }, [filter])
-
 
     return (
         <section className='content'>

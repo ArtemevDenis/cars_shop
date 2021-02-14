@@ -1,6 +1,6 @@
 import React from "react";
 
-const CheckBox = ({value, handler}) => {
+const CheckBox = ({value, handler, isCheck}) => {
     return (
         <>
             <input
@@ -9,21 +9,11 @@ const CheckBox = ({value, handler}) => {
                 onChange={() => {
                     handler(value)
                 }}
+                checked={isCheck}
             />
             <label className="widget--checkbox-fake" htmlFor={value}>{value}</label>
 
         </>
-        // <label className='checkbox-list__item'>
-        //     <input
-        //         className='checkbox-list__input'
-        //         type='checkbox'
-        //         onChange={() => {
-        //             handler(value)
-        //         }}
-        //     />{value}
-        // </label>
-
-
     )
 }
 

@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-const RangeSlider = ({min, max, title, setMaxValue, setMinValue, minValue, maxValue}) => {
-
-
+const RangeSlider = ({min, max, title, minValue, maxValue, name, onChangeHandler}) => {
     const [maxRange, setMaxRange] = useState(100)
     const [minRange, setMinRange] = useState(0)
 
+    const setMaxValue = (value) => {
+        onChangeHandler({value: value, name: `max${name}`})
+    }
+    const setMinValue = (value) => {
+        onChangeHandler({value: value, name: `min${name}`})
+    }
 
     const editMin = (e) => {
         let newMin = e.target.value;
@@ -53,6 +57,11 @@ const RangeSlider = ({min, max, title, setMaxValue, setMinValue, minValue, maxVa
         setMaxValue(Math.round(min + Number(max - min) / 100.0 * Number(newValue)));
     }
 
+    useEffect(() => {
+        setMaxRange(Math.round((maxValue - min) / (max - min) * 100.0))
+        setMinRange(Math.round((minValue - min) / (max - min) * 100.0))
+    }, [])
+
     return (
         <div className='filters--widget widget'>
             <p className='widget--title'>{title}</p>
@@ -65,6 +74,7 @@ const RangeSlider = ({min, max, title, setMaxValue, setMinValue, minValue, maxVa
                         onChange={editMin}
                         min={min}
                         max={max}
+                        name={`min${name}`}
                         step={(max - min) / 100 - 1 < Number.EPSILON ? 1 : max / 100}
                         type='number'/>
                     <input
@@ -73,6 +83,7 @@ const RangeSlider = ({min, max, title, setMaxValue, setMinValue, minValue, maxVa
                         onChange={editMax}
                         min={min}
                         max={max}
+                        name={`max${name}`}
                         step={(max - min) / 100 - 1 < Number.EPSILON ? 1 : max / 100}
                         type='number'/>
                 </>
