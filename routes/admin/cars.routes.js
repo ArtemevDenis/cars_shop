@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const adminMiddleware = require('../../middleware/admin.middleware')
 const multer = require('multer');
+const deleteFile = require("../../deleteFile");
 
 const router = Router()
 
@@ -17,18 +18,29 @@ const upload = multer({storage: storage})
 
 
 router.delete('', adminMiddleware, function (req, res) {
-        const {carID} = req.query
-        const deleteCar = 'delete from cars where ID = ?'
-        const deleteFavorite = 'delete from favorite where carID = ?'
-        const deleteReviews = 'delete from reviews where carID = ?'
-        const deleteImg = 'delete from carsimages where carID = ?'
-        const deleteTestDrives = 'delete from testdrives where carID = ?'
+    const {carID} = req.query
+    const deleteCar = 'delete from cars where ID = ?'
+    const deleteFavorite = 'delete from favorite where carID = ?'
+    const deleteReviews = 'delete from reviews where carID = ?'
+    const deleteImg = 'delete from carsimages where carID = ?'
+    const deleteTestDrives = 'delete from testdrives where carID = ?'
+
+    const getImgLink = 'select img from carsimages where carID = ?'
 
 
-        let selectCars = 'select cars.* , brands.name  AS brand, carsimages.img from cars left join  brands on cars.brandID = brands.ID  left join  carsimages  on  cars.ID = carsimages.carID '
+    let selectCars = 'select cars.* , brands.name  AS brand, carsimages.img from cars left join  brands on cars.brandID = brands.ID  left join  carsimages  on  cars.ID = carsimages.carID '
 
-        global.connectionMYSQL.execute(deleteCar, [carID])
-            .then(() => global.connectionMYSQL.execute(deleteFavorite, [carID]))
+    global.connectionMYSQL.execute(deleteCar, [carID])
+        .then(() => global.connectionMYSQL.execute(deleteFavorite, [carID]))
+        .then(() => global.connectionMYSQL.execute(getImgLink, [carID]))
+        .then(r => {
+            const links = r[0]
+            console.log(links)
+            links.forEach(link => {
+                deleteFile(link)
+            })
+
+        })
             .then(() => global.connectionMYSQL.execute(deleteReviews, [carID]))
             .then(() => global.connectionMYSQL.execute(deleteImg, [carID]))
             .then(() => global.connectionMYSQL.execute(deleteTestDrives, [carID]))
@@ -36,7 +48,8 @@ router.delete('', adminMiddleware, function (req, res) {
             .then(r => {
                 res.json(r[0])
             })
-            .catch(e => {
+
+        .catch(e => {
                 res.json({error: e})
             })
     }

@@ -2,6 +2,7 @@ const {Router} = require('express')
 const multer = require('multer');
 const authMiddleware = require('../middleware/auth.middleware')
 const adminMiddleware = require('../middleware/admin.middleware')
+const deleteFile = require("../deleteFile");
 
 
 const router = Router()
@@ -36,23 +37,28 @@ router.get('/', authMiddleware, function (req, res) {
 router.post('/', [authMiddleware, upload.single('avatar')], function (req, res) {
 
     const id = req.user.userID;
-        const {email, phone, name, surname} = JSON.parse(req.body.data);
-        const {filename} = req.file;
+    const {email, phone, name, surname} = JSON.parse(req.body.data);
+    const {filename} = req.file;
 
-        const sqlCreateAvatars = 'insert into avatars (img) values (?)';
-        const updateUsers = 'update users set name = ?, surname = ?, phone = ?, email = ?, avatarID = ? where ID = ?'
+    const sqlCreateAvatars = 'insert into avatars (img) values (?)';
+    const updateUsers = 'update users set name = ?, surname = ?, phone = ?, email = ?, avatarID = ? where ID = ?'
+    const selectAvatar = 'select img from avatars inner join users on users.avatarID = avatars.ID where users.ID = ?';
 
-        global.connectionMYSQL.execute(sqlCreateAvatars, [filename])
-            .then(r => {
-                const avatarID = r[0].insertId
-                return global.connectionMYSQL.execute(updateUsers, [name, surname, phone, email, avatarID, id])
-            })
-            .then(r => {
-                res.json({message: 'ok'})
-            })
-            .catch(e => {
-                res.json({error: e})
-            })
+    global.connectionMYSQL.execute(selectAvatar, [id])
+        .then(r => {
+            deleteFile(r[0][0].img)
+            return global.connectionMYSQL.execute(sqlCreateAvatars, [filename])
+        })
+        .then(r => {
+            const avatarID = r[0].insertId
+            return global.connectionMYSQL.execute(updateUsers, [name, surname, phone, email, avatarID, id])
+        })
+        .then(r => {
+            res.json({message: 'ok'})
+        })
+        .catch(e => {
+            res.json({error: e})
+        })
     }
 )
 
