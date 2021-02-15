@@ -25,7 +25,7 @@ router.delete('', adminMiddleware, function (req, res) {
     const deleteReviewsSQL = 'delete from reviews where userID = ?'
     const deleteTestDriveSQL = 'delete from testdrives where userID = ?'
     const deleteAvatarSQL = 'delete from testdrives  where ID = (select users.avatarID from users where ID = ? )'
-    const select = 'select testdrives.ID, testdrives.date, testdrives.carID, testdrives.address, cars.title, brands.name from testdrives inner join cars on cars.ID = testdrives.carID inner join brands on cars.brandID = brands.ID  order by testdrives.date'
+    const select = 'select users.name AS userName, users.surname AS userSurname, users.email, users.phone, testdrives.ID, testdrives.date, testdrives.carID, testdrives.address, cars.title, brands.name from testdrives inner join cars on cars.ID = testdrives.carID inner join brands on cars.brandID = brands.ID inner join users on users.ID = testdrives.userID order by testdrives.date'
 
     global.connectionMYSQL.execute(deleteSQL, [id])
         .then(() => global.connectionMYSQL.execute(deleteReviewsSQL, [id]))
