@@ -100,7 +100,7 @@ const Car = () => {
                         history.goBack()
                     }}>Назад
                 </div>
-                {images && <Slider sliderData={images} showMini={true}/>}
+               <Slider sliderData={images} showMini={true}/>
             </div>
             <div className='product-view__description'>
                 {car && <>

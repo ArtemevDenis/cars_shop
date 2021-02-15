@@ -35,7 +35,7 @@ const Main = () => {
     return (
         <>
             <section className="content">
-                {slider && <Slider sliderData={slider}/>}
+                <Slider sliderData={slider}/>
             </section>
             <section className="content">
                 <h2>Новые автомобили в нашем салоне</h2>

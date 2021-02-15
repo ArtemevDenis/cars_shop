@@ -5,6 +5,9 @@
 .slider {
     position: relative;
     overflow: hidden;
+    /*background-color: #adb5bd;*/
+    min-height: var(--size-height);
+    max-height: var(--size-height);
 }
 
 .slider__wrapper {
@@ -19,6 +22,7 @@
 .slider__item {
     flex: 0 0 100%;
     max-width: 100%;
+    min-width: 100%;
 }
 
 .slider__control {

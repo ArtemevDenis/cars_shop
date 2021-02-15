@@ -24,6 +24,11 @@
 @import "style/carEdit.css";
 
 
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
 body {
     padding: 0;
     margin: 0;

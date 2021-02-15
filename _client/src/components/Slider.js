@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 
-
 const Slider = ({sliderData}) => {
     const [currentPosition, setCurrentPosition] = useState(0)
     const prevSlide = () => {
@@ -22,19 +21,21 @@ const Slider = ({sliderData}) => {
 
     return (
         <div className="slider">
-            <div className="slider__wrapper" style={{transform: 'translateX(-' + currentPosition * 100 + '%)'}}>
-                {sliderData && sliderData.map((slide, index) =>
-                    <div className="slider__item" key={index}>
-                        <img className="slider__img" src={'/images/' + slide.img}/>
-                    </div>
-                )}
-            </div>
-            <div
-                className="slider__control slider__control_left"
-                onClick={prevSlide}/>
-            <div
-                className="slider__control slider__control_right slider__control_show"
-                onClick={nextSlide}/>
+            {sliderData && <>
+                <div className="slider__wrapper" style={{transform: 'translateX(-' + currentPosition * 100 + '%)'}}>
+                    {sliderData && sliderData.map((slide, index) =>
+                        <div className="slider__item" key={index}>
+                            <img className="slider__img" alt='' src={'/images/' + slide.img}/>
+                        </div>
+                    )}
+                </div>
+                <div
+                    className="slider__control slider__control_left"
+                    onClick={prevSlide}/>
+                <div
+                    className="slider__control slider__control_right slider__control_show"
+                    onClick={nextSlide}/>
+            </>}
         </div>
     )
 }
