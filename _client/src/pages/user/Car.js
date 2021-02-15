@@ -23,6 +23,7 @@ const Car = () => {
     const [height, setHeight] = useState(0)
 
     const [showModal, setShowModal] = useState(false)
+    const [isTestDrive, setIsTestDrive] = useState(false)
 
     const [form, setForm] = useState({
         address: '', date: ''
@@ -64,8 +65,10 @@ const Car = () => {
         request(`/api/v1/test-drives?carID=${carID}&date=${newDate}&address=${form.address}`, 'POST', null, {Authorization: `Bearer ${token}`})
             .then(
                 r => {
-                    if (r.message === 'ok')
+                    if (r.message === 'ok') {
                         setShowModal(false)
+                        setIsTestDrive(true)
+                    }
                 }
             )
     }
@@ -165,6 +168,9 @@ const Car = () => {
                     <NavLink to='/login'>Войти</NavLink>
                 </Modal>
             }
+            <Modal active={isTestDrive} setActive={setIsTestDrive}>
+                <p>Спасибо за запись на тест драйв!</p>
+            </Modal>
         </div>
     )
 }

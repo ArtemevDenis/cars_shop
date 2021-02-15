@@ -100,3 +100,7 @@ input::-webkit-inner-spin-button {
     padding: 0;
 }
 
+.invisibleLink{
+    text-decoration: none;
+    color: inherit;
+}

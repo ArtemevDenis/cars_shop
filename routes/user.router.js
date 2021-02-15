@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage: storage})
+const upload = multer({storage: storage});
 
 
 router.get('/', authMiddleware, function (req, res) {
@@ -59,19 +59,21 @@ router.post('/', [authMiddleware, upload.single('avatar')], function (req, res) 
 
 router.post('/fields', [authMiddleware], function (req, res) {
 
-        const id = req.user.userID;
-        const {email, phone, name, surname} = req.body;
+    const id = req.user.userID;
+    const {email, phone, name, surname} = req.body;
 
-        const updateUsers = 'update users set name = ?, surname = ?, phone = ?, email = ? where ID = ?'
+    const updateUsers = 'update users set name = ?, surname = ?, phone = ?, email = ? where ID = ?'
+    const selectUserData = 'select users.avatarID, users.email, users.phone, users.surname, users.name, avatars.img from users left join avatars on users.avatarID = avatars.ID where users.ID = ?'
 
-
-        global.connectionMYSQL.execute(updateUsers, [name, surname, phone, email, id])
-            .then(r => {
-                res.json({message: 'ok'})
-            })
-            .catch(e => {
-                res.json({error: e})
-            })
+    global.connectionMYSQL.execute(updateUsers, [name, surname, phone, email, id])
+        .then(
+            global.connectionMYSQL.execute(selectUserData, [id]))
+        .then(r => {
+            res.json(r[0][0])
+        })
+        .catch(e => {
+            res.json({error: e})
+        })
     }
 )
 

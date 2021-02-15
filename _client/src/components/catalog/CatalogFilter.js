@@ -56,7 +56,6 @@ const CatalogFilter = ({filterEdit, loadCars}) => {
 
     const changeHandler = event => {
         setFilter({...filter, [event.name]: event.value})
-        console.log(filter)
     }
 
 

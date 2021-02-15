@@ -73,7 +73,7 @@ const Main = () => {
                     </div>
                 </div>
             </section>
-            <Reviews reviews={reviews}/>
+            <Reviews reviews={reviews} isLink={true}/>
         </>
     )
 }
