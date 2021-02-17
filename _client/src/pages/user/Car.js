@@ -45,7 +45,6 @@ const Car = () => {
                     setCar(data.car);
                     setImages(data.imgs);
                     setReviews(data.reviews);
-
                 }
             )
     }

@@ -8,14 +8,15 @@ const Header = () => {
     return (
         <header className="header">
             <div className="wrapper">
-                <div>
-                    <div className="logo">
-                        <NavLink className="logo__link" to="/" exact>
-                            <img className="logo__img" alt=""/>
-                            <h1 className="logo__title">Названике компании</h1>
-                        </NavLink>
-                    </div>
+
+                <div className="logo">
+                    <NavLink className="logo__link" to="/" exact>
+                        <img className="logo__img" alt=""/>
+                        <h1 className="logo__title">Названике компании</h1>
+                    </NavLink>
                 </div>
+                <input type='checkbox' id='show-menu' className='header-menu-toggle'/>
+                <label htmlFor='show-menu' className='header-menu-toggle__label'/>
                 <nav className="header__navigation">
                     <ul className="navigation navigation--inline navigation--lage">
                         <li className="navigation__item navigation__item--active"><NavLink
